@@ -31,12 +31,12 @@
                     <h4 class="text-[#64748B]">Sign in to manage your issues</h4>
                 </div>
               <label class="label font-medium text-[#1F2937]">Username</label>
-              <input type="text" class="input text-[#64748B]" placeholder="Enter Username" required />
+              <input id="input-name" type="text" class="input text-[#64748B]" placeholder="Enter Username" required />
               <p class="text-sm text-[#4A00FF]">Default: admin</p>
               <label class="label font-medium text-[#1F2937]">Password</label>
-              <input type="password" class="input text-[#64748B]" placeholder="Enter Password" required />
+              <input id="input-pass" type="password" class="input text-[#64748B]" placeholder="Enter Password" required />
               <p class="text-[#4A00FF] text-sm">Default: admin123</p>
-              <button class="btn btn-primary mt-4">Sign In</button>
+              <button id="sign-in" class="btn btn-primary mt-4">Sign In</button>
               <div class="flex justify-center items-center gap-1 my-5">
                     <hr class="w-1/2 text-[#E4E4E7]">
                     <p class="text-[#1F2937]">OR</p>
@@ -52,5 +52,6 @@
             </fieldset>
         </div>
     </header>
+    <script src="./js/login.js"></script>
 </body>
 </html>
