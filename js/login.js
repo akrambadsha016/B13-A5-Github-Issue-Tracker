@@ -5,7 +5,7 @@ document.getElementById('sign-in').addEventListener('click', function(event){
     
     if(inputName === 'admin' && inputPassword === 'admin123'){
         alert('Welcome');
-        window.location.href = 'login.html';
+        window.location.href = 'index.html';
     }
     else{
         alert('Invalid Information');

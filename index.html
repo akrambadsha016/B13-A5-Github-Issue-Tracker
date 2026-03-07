@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Issues Tracker</title>
+    <link rel="shortcut icon" href="./assets/github-logo.png" type="image/x-icon">
+    <!-- google font -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+    <!-- font awesome -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- tailwind + daisyUI -->
+     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+     <style>
+        *{
+            font-family: "Geist", sans-serif;
+        }
+     </style>
+</head>
+<body>
+    <header>
+        <nav class="py-4 bg-white border-b-2 border-[#E9E9E9] mb-10 md:mb-14">
+            <div class="max-w-[1600px] mx-auto w-11/12 md:flex md:justify-between md:items-center lg:w-full">
+                <!-- logo -->
+                <div class="flex items-center justify-center gap-1 mb-5 md:mb-0 md:justify-normal">
+                    <img class="w-10 h-10" src="./assets/github-logo.png" alt="">
+                    <h2 class="font-semibold text-2xl text-[#1F2937]">GitHub Issues Tracker</h2>
+                </div>
+
+                <!-- search + button -->
+                <div class="flex gap-4">
+                    <div class="join">
+                         <label class="input validator join-item">
+                            <div class="flex items-center justify-center gap-1 text-[#64748B]">
+                                <i class="fa-brands fa-sistrix"></i><input type="text" placeholder="Search issues..."
+                                    required />
+                            </div>
+                         </label>
+                    <button class="btn btn-primary font-semibold join-item">
+                        <i class="fa-solid fa-plus"></i>
+                        New Issue
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+</body>
+</html>
