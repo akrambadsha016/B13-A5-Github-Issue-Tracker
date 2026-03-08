@@ -1,0 +1,82 @@
+let allIssues = [];
+
+// fetch issues
+const loadIssues = async () => {
+    showSpinner();
+    try {
+        const res = await fetch('https://phi-lab-server.vercel.app/api/v1/lab/issues')
+        const data = await res.json();
+
+        allIssues = data.data
+        displayIssues(allIssues);
+        removeSpinner();
+    }
+    catch (err) {
+        alert('Error');
+    }
+}
+
+// display issues
+const displayIssues = (issues) => {
+
+    // dynamic card counter
+    const issueCounter = document.getElementById('issues-count');
+    issueCounter.innerText = issues.length;
+
+    const issuesContainer = document.getElementById('issues');
+    issuesContainer.innerHTML = '';
+
+    if (issues.length === 0) {
+        issuesContainer.classList.remove('grid');
+        issuesContainer.innerHTML = `
+        <div class="flex justify-center items-center w-full py-16">
+            <h3 class="font-bold text-3xl">No Data Found</h3>
+        </div>
+    `
+    }
+    else {
+        issuesContainer.classList.add('grid');
+    }
+    issues.forEach(issue => {
+
+        // created a card container
+        const issueCards = document.createElement('div');
+        issueCards.innerHTML = `
+            <div onclick="detailsModal(${issue.id})" class="card bg-base-100 h-full shadow-sm border-t-5 ${issue.status === 'open' ? 'border-t-[rgb(99,230,190)]' : 'border-t-[rgb(177,151,252)]'}">
+                <div class="flex flex-col gap-0.5 p-6 flex-grow">
+                    <div class="flex justify-between mb-3">
+                        <img src=${issue.status === 'open' ? "assets/Open-Status.png" : "assets/Closed-Status.png"} alt="">
+                        <h3 class="px-4 py-2 font-medium text-sm rounded-[100px] ${issue.priority === 'high' ? 'bg-[#FEECEC] text-[#EF4444]' : issue.priority === 'medium' ? 'bg-[#FFF6D1] text-[#F59E0B]' : 'bg-[#EEEFF2] text-[#9CA3AF]'}">
+                        ${issue.priority === 'high' ? 'HIGH' : issue.priority === 'medium' ? 'MEDIUM' : 'LOW'}
+                        </h3>
+                    </div>
+                    <div class="space-y-1 mb-3 flex-grow">
+                        <h3 class="font-semibold text-sm text-[#1F2937]">${issue.title}</h3>
+                        <p class="text-xs text-[#64748B]">${issue.description}</p>
+                    </div>
+                    <div class="flex gap-1.5 items-center whitespace-nowrap mb-3">
+                        ${labels(issue.labels)}
+                    </div>
+                    <hr class="text-gray-300 mb-3">
+                    <div class="text-[#64748B] text-xs flex justify-between items-center">
+                        <h3>#${issue.id} ${issue.author}</h3>
+                        <p>${new Date(issue.createdAt).toLocaleDateString()}</p>
+                    </div>
+                    <div class="text-[#64748B] text-xs flex justify-between items-center">
+                        <h3>Assignee: ${issue.assignee === '' ? 'Unknown' : issue.assignee}</h3>
+                        <p>${new Date(issue.updatedAt).toLocaleDateString()}</p>
+                    </div>
+                </div>
+            </div>
+        `;
+        issuesContainer.appendChild(issueCards);
+    });
+}
+
+// labels array
+const labels = (items) => {
+    const label = items.map(item => `<span class="px-1.5 py-2 flex items-center gap-0.5 rounded-[100px] font-medium text-[9px] ${item === 'bug' ? 'bg-[#FEECEC] text-[#EF4444] border border-[#FECACA]' : item === 'enhancement' ? 'bg-[#DEFCE8] text-[#00A96E] border border-[#BBF7D0]' : 'bg-[#FFF8DB] text-[#D97706] border border-[#FDE68A]'}">${item === 'bug' ? '<i class="fa-solid fa-bug"></i>' : item === 'enhancement' ? '<i class="fa-solid fa-wand-magic-sparkles"></i>' : '<i class="fa-regular fa-life-ring"></i>'} ${item.toUpperCase()}</span>`)
+    return (label.join(" "));
+}
+
+loadIssues();

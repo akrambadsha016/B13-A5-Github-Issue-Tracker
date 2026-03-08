@@ -20,26 +20,25 @@
         }
      </style>
 </head>
-<body>
+<body class="bg-[#F8FAFC] min-h-screen">
     <header>
         <nav class="py-4 bg-white border-b-2 border-[#E9E9E9] mb-10 md:mb-14">
             <div class="max-w-[1600px] mx-auto w-11/12 md:flex md:justify-between md:items-center lg:w-full">
-                <!-- logo -->
+                
                 <div class="flex items-center justify-center gap-1 mb-5 md:mb-0 md:justify-normal">
                     <img class="w-10 h-10" src="./assets/github-logo.png" alt="">
                     <h2 class="font-semibold text-2xl text-[#1F2937]">GitHub Issues Tracker</h2>
                 </div>
 
-                <!-- search + button -->
+                
                 <div class="flex gap-4">
                     <div class="join">
                          <label class="input validator join-item">
                             <div class="flex items-center justify-center gap-1 text-[#64748B]">
-                                <i class="fa-brands fa-sistrix"></i><input type="text" placeholder="Search issues..."
-                                    required />
+                                <i class="fa-brands fa-sistrix"></i><input id="input" type="text" placeholder="Search issues..." />
                             </div>
                          </label>
-                    <button class="btn btn-primary font-semibold join-item">
+                    <button id="search" class="btn btn-primary font-semibold join-item">
                         <i class="fa-solid fa-plus"></i>
                         New Issue
                     </button>
@@ -50,20 +49,20 @@
     <section class="max-w-[1110px] mx-auto w-11/12 lg:w-full">
         <!-- buttons -->
         <div class="bg-white p-6 drop-shadow-sm mb-4 rounded-lg">
-           <button class="btn mr-2 btn-primary">All</button>
-           <button class="btn mr-2 btn-primary">Open</button>
-           <button class="btn mr-2 btn-primary">Closed</button>
+           <button id="btn-all" class="btn mr-2 btn-primary">All</button>
+           <button id="btn-open" class="btn mr-2 btn-primary">Open</button>
+           <button id="btn-close" class="btn mr-2 btn-primary">Closed</button>
         </div>
 
         <!-- issue count -->
          <div class="flex flex-col bg-white p-6 drop-shadow-sm mb-4 rounded-lg md:flex-row md:justify-between md:items-center">
             <!-- issue text and image -->
              <div class="flex gap-1 items-center mb-2 md:mb-0">
-                <div class="w-10 h-10 rounded-full flex items-center bg-[#4A00FF justify-center]">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center">
                     <img class="w-8 h-8" src="./assets/Aperture.png" alt="">
                 </div>
                 <div>
-                    <h3 class="font-semibold text-xl text-[#1F2937]"><span>50</span>Issues</h3>
+                    <h3 class="font-semibold text-xl text-[#1F2937]"><span id="issues-count">50</span>Issues</h3>
                     <p class="text-[#64748B]">Track and manage your project issues</p>
                 </div>
              </div>
@@ -77,10 +76,26 @@
 
          <!-- issues -->
           <div class="bg-[#FBFBFB] shadow-lg rounded-md p-3 md:p-5">
-            <div class="grid grid-cols-1 gap-3 md:gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <div id="issues" class="grid grid-cols-1 gap-3 md:gap-4 md:grid-cols-2 lg:grid-cols-4"></div>
 
-            </div>
+            <!-- spinner -->
+             <div id="spinner" class="hidden">
+                <span class="loading loading-dots loading-md" ></span>
+             </div>
           </div>
     </section>
+      <section>
+            <dialog id="issue-detail" class="modal">
+                <div class="modal-box">
+                    <div id="modal-container"></div>
+                    <div class="modal-action">
+                        <form method="dialog">
+                            <button class="btn btn-primary">Close</button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
+        </section>
+    <script src="./js/login.js"></script>
 </body>
 </html>
