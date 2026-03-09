@@ -1,4 +1,4 @@
-document.getElementById('search-btn').addEventListener('click', function (){
+document.getElementById('search').addEventListener('click', function (){
     
     document.getElementById('btn-all').classList.remove('btn-primary');
     document.getElementById('btn-open').classList.remove('btn-primary');
